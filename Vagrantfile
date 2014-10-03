@@ -19,7 +19,7 @@ sudo sh -c "echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources
 sudo apt-get update -qq && sudo apt-get install -y lxc-docker
 sudo usermod -a -G docker vagrant && sudo su -l vagrant
 
-(cd /vagrant && docker build -t curious/node . && docker run -d -p 8080:8080 curious/node)
+sudo mkdir -p /var/lock/curious && sudo chown -R vagrant:vagrant /var/lock/curious
 SCRIPT
 
   config.vm.network :forwarded_port, guest: 8080, host: 8080
