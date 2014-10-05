@@ -1,6 +1,12 @@
 #/bin/bash -eux
 
-CIDFILE=/var/lock/curious/node.cid
+LOCKDIR=/var/lock/curious
+CIDFILE=$LOCKDIR/node.cid
+
+USER=$(whoami)
+GROUP=$(id -gn)
+
+[ ! -d $LOCKDIR ] && sudo mkdir -p $LOCKDIR && sudo chown -R $USER:$GROUP $LOCKDIR
 
 cd /vagrant && \
 ([ -f $CIDFILE ] && (docker stop `cat $CIDFILE` && rm -f $CIDFILE) || true) && \
