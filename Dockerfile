@@ -1,2 +1,2 @@
-FROM node:0.10-onbuild
+FROM curious/node:onbuild
 
